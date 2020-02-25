@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TBankCardMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.TBankCard">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="card_number" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+    <result column="balance" jdbcType="BIGINT" property="balance" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    id, user_id, realname, bank_name, card_number, branch_name, balance, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_bank_card
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    delete from t_bank_card
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.TBankCard">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_bank_card (id, user_id, realname, 
+      bank_name, card_number, branch_name, 
+      balance, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, #{branchName,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.TBankCard">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="cardNumber != null">
+        card_number,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.TBankCard">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_bank_card
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.TBankCard">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_bank_card
+    set user_id = #{userId,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      branch_name = #{branchName,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getBackCarUserId" resultMap="BaseResultMap">
+    SELECT * FROM `t_bank_card` WHERE user_id=#{userid}
+  </select>
+  <update id="updateWithdrawMoney">
+    UPDATE t_bank_card
+    <set>
+    <if test="bankName != null and bankName != ''">
+      `balance`=#{balance}
+    </if>
+    WHERE 1=1
+    <if test="userId != null and userId != ''">
+      AND user_id=#{userId}
+    </if>
+    <if test="realname != null and realname != ''">
+      AND realname=#{realname}
+    </if>
+    <if test="bankName != null and bankName != ''">
+      AND bank_name=#{bankName}
+    </if>
+    <if test="cardNumber != null and cardNumber != ''">
+      AND card_number=#{cardNumber}
+    </if>
+    <if test="branchName != null and branchName != ''">
+      AND branch_name=#{branchName}
+    </if>
+    </set>
+  </update>
+</mapper>

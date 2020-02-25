@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TLoginLogMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.TLoginLog">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  <id column="id" jdbcType="BIGINT" property="id" />
+  <result column="ip" jdbcType="VARCHAR" property="ip" />
+  <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+  <result column="username" jdbcType="VARCHAR" property="username" />
+  <result column="account_type" jdbcType="INTEGER" property="accountType" />
+  <result column="login_result" jdbcType="INTEGER" property="loginResult" />
+  <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+</resultMap>
+<sql id="Base_Column_List">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  id, ip, login_time, username, account_type, login_result, create_time
+</sql>
+<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  select
+  <include refid="Base_Column_List" />
+  from t_login_log
+  where id = #{id,jdbcType=BIGINT}
+</select>
+<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  delete from t_login_log
+  where id = #{id,jdbcType=BIGINT}
+</delete>
+<insert id="insert" parameterType="com.example.demo.pojo.TLoginLog">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  insert into t_login_log (id, ip, login_time,
+  username, account_type, login_result,
+  create_time)
+  values (#{id,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP},
+  #{username,jdbcType=VARCHAR}, #{accountType,jdbcType=INTEGER}, #{loginResult,jdbcType=INTEGER},
+  #{createTime,jdbcType=TIMESTAMP})
+</insert>
+<insert id="insertSelective" parameterType="com.example.demo.pojo.TLoginLog">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  insert into t_login_log
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+    <if test="id != null">
+      id,
+    </if>
+    <if test="ip != null">
+      ip,
+    </if>
+    <if test="loginTime != null">
+      login_time,
+    </if>
+    <if test="username != null">
+      username,
+    </if>
+    <if test="accountType != null">
+      account_type,
+    </if>
+    <if test="loginResult != null">
+      login_result,
+    </if>
+    <if test="createTime != null">
+      create_time,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides=",">
+    <if test="id != null">
+      #{id,jdbcType=BIGINT},
+    </if>
+    <if test="ip != null">
+      #{ip,jdbcType=VARCHAR},
+    </if>
+    <if test="loginTime != null">
+      #{loginTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="username != null">
+      #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="accountType != null">
+      #{accountType,jdbcType=INTEGER},
+    </if>
+    <if test="loginResult != null">
+      #{loginResult,jdbcType=INTEGER},
+    </if>
+    <if test="createTime != null">
+      #{createTime,jdbcType=TIMESTAMP},
+    </if>
+  </trim>
+</insert>
+<update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.TLoginLog">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  update t_login_log
+  <set>
+    <if test="ip != null">
+      ip = #{ip,jdbcType=VARCHAR},
+    </if>
+    <if test="loginTime != null">
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="username != null">
+      username = #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="accountType != null">
+      account_type = #{accountType,jdbcType=INTEGER},
+    </if>
+    <if test="loginResult != null">
+      login_result = #{loginResult,jdbcType=INTEGER},
+    </if>
+    <if test="createTime != null">
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+    </if>
+  </set>
+  where id = #{id,jdbcType=BIGINT}
+</update>
+<update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.TLoginLog">
+  <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+  update t_login_log
+  set ip = #{ip,jdbcType=VARCHAR},
+  login_time = #{loginTime,jdbcType=TIMESTAMP},
+  username = #{username,jdbcType=VARCHAR},
+  account_type = #{accountType,jdbcType=INTEGER},
+  login_result = #{loginResult,jdbcType=INTEGER},
+  create_time = #{createTime,jdbcType=TIMESTAMP}
+  where id = #{id,jdbcType=BIGINT}
+</update>
+
+<select id="selectLoginLog" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List"/>
+  from t_login_log
+  where 1=1
+  <if test="beginDate != null and beginDate != ''">
+    and login_time > #{beginDate,jdbcType=VARCHAR}
+  </if>
+  <if test="endDate != null and endDate != ''">
+    and login_time  <![CDATA[<]]> #{endDate,jdbcType=VARCHAR}
+  </if>
+  <if test="username != null and username != ''">
+    and username=#{username,jdbcType=VARCHAR}
+  </if>
+  <if test="loginResult != null and loginResult > -1">
+    and login_result=#{loginResult,jdbcType=INTEGER}
+  </if>
+  limit #{starNo,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+</select>
+
+<select id="countLoginLog" resultType="int">
+  select count(1) from (
+  select
+  <include refid="Base_Column_List"/>
+  from t_login_log
+  where 1=1
+  <if test="beginDate != null and beginDate != ''">
+    and login_time > #{beginDate,jdbcType=VARCHAR}
+  </if>
+  <if test="endDate != null and endDate != ''">
+    and login_time  <![CDATA[<]]> #{endDate,jdbcType=VARCHAR}
+  </if>
+  <if test="username != null and username != ''">
+    and username=#{username,jdbcType=VARCHAR}
+  </if>
+  <if test="loginResult != null and loginResult > -1">
+    and login_result=#{loginResult,jdbcType=INTEGER}
+  </if>
+  )as total_count
+</select>
+</mapper>

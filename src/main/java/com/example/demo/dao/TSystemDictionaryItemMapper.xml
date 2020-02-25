@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TSystemDictionaryItemMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.TSystemDictionaryItem">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    id, parent_id, value, order_no, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_system_dictionary_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    delete from t_system_dictionary_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.TSystemDictionaryItem">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_system_dictionary_item (id, parent_id, value, 
+      order_no, create_time)
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.TSystemDictionaryItem">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_system_dictionary_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.TSystemDictionaryItem">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_system_dictionary_item
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.TSystemDictionaryItem">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_system_dictionary_item
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="seleAll" resultMap="BaseResultMap">
+      SELECT * FROM `t_system_dictionary_item`
+    </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
+      SELECT * FROM `t_system_dictionary_item`
+      WHERE 1=1
+    <if test="parentId!=null and parentId!=''">
+      AND parent_id=#{parentId}
+    </if>
+     <if test="keyword != null and keyword != ''">
+      AND `value` LIKE concat('%',#{keyword},'%')
+     </if>
+      <if test="page.currentPage != null">
+        LIMIT #{page.currentPage},#{page.visiblePages}
+      </if>
+
+  </select>
+  <select id="getCount" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM `t_system_dictionary_item`
+    WHERE 1=1
+    <if test="parentId!=null and parentId!=''">
+      AND parent_id=#{parentId}
+    </if>
+    <if test="keyword != null and keyword != ''">
+      AND `value` LIKE concat('%',#{keyword},'%')
+    </if>
+  </select>
+
+</mapper>

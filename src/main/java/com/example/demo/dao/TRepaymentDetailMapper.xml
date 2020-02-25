@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TRepaymentDetailMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.TRepaymentDetail">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="bid_id" jdbcType="VARCHAR" property="bidId" />
+    <result column="borrow_id" jdbcType="VARCHAR" property="borrowId" />
+    <result column="repayment_id" jdbcType="VARCHAR" property="repaymentId" />
+    <result column="borrow_user_id" jdbcType="VARCHAR" property="borrowUserId" />
+    <result column="bid_user_id" jdbcType="VARCHAR" property="bidUserId" />
+    <result column="borrow_title" jdbcType="VARCHAR" property="borrowTitle" />
+    <result column="total_amount" jdbcType="BIGINT" property="totalAmount" />
+    <result column="principal" jdbcType="BIGINT" property="principal" />
+    <result column="interest" jdbcType="BIGINT" property="interest" />
+    <result column="period" jdbcType="INTEGER" property="period" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="repayment_time" jdbcType="TIMESTAMP" property="repaymentTime" />
+    <result column="repayment_type" jdbcType="INTEGER" property="repaymentType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    id, bid_id, borrow_id, repayment_id, borrow_user_id, bid_user_id, borrow_title, total_amount, 
+    principal, interest, period, deadline, repayment_time, repayment_type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_repayment_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    delete from t_repayment_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.TRepaymentDetail">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_repayment_detail (id, bid_id, borrow_id, 
+      repayment_id, borrow_user_id, bid_user_id, 
+      borrow_title, total_amount, principal, 
+      interest, period, deadline, 
+      repayment_time, repayment_type, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{bidId,jdbcType=VARCHAR}, #{borrowId,jdbcType=VARCHAR}, 
+      #{repaymentId,jdbcType=VARCHAR}, #{borrowUserId,jdbcType=VARCHAR}, #{bidUserId,jdbcType=VARCHAR}, 
+      #{borrowTitle,jdbcType=VARCHAR}, #{totalAmount,jdbcType=BIGINT}, #{principal,jdbcType=BIGINT}, 
+      #{interest,jdbcType=BIGINT}, #{period,jdbcType=INTEGER}, #{deadline,jdbcType=TIMESTAMP}, 
+      #{repaymentTime,jdbcType=TIMESTAMP}, #{repaymentType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.TRepaymentDetail">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_repayment_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bidId != null">
+        bid_id,
+      </if>
+      <if test="borrowId != null">
+        borrow_id,
+      </if>
+      <if test="repaymentId != null">
+        repayment_id,
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id,
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id,
+      </if>
+      <if test="borrowTitle != null">
+        borrow_title,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="principal != null">
+        principal,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="repaymentTime != null">
+        repayment_time,
+      </if>
+      <if test="repaymentType != null">
+        repayment_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bidId != null">
+        #{bidId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowId != null">
+        #{borrowId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentId != null">
+        #{repaymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        #{borrowUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        #{bidUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTitle != null">
+        #{borrowTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentTime != null">
+        #{repaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentType != null">
+        #{repaymentType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.TRepaymentDetail">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_repayment_detail
+    <set>
+      <if test="bidId != null">
+        bid_id = #{bidId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowId != null">
+        borrow_id = #{borrowId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentId != null">
+        repayment_id = #{repaymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id = #{borrowUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null">
+        bid_user_id = #{bidUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTitle != null">
+        borrow_title = #{borrowTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="principal != null">
+        principal = #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null">
+        interest = #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentTime != null">
+        repayment_time = #{repaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentType != null">
+        repayment_type = #{repaymentType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.TRepaymentDetail">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_repayment_detail
+    set bid_id = #{bidId,jdbcType=VARCHAR},
+      borrow_id = #{borrowId,jdbcType=VARCHAR},
+      repayment_id = #{repaymentId,jdbcType=VARCHAR},
+      borrow_user_id = #{borrowUserId,jdbcType=VARCHAR},
+      bid_user_id = #{bidUserId,jdbcType=VARCHAR},
+      borrow_title = #{borrowTitle,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=BIGINT},
+      principal = #{principal,jdbcType=BIGINT},
+      interest = #{interest,jdbcType=BIGINT},
+      period = #{period,jdbcType=INTEGER},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      repayment_time = #{repaymentTime,jdbcType=TIMESTAMP},
+      repayment_type = #{repaymentType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getBorrowId" resultType="com.example.demo.pojo.TRepayment">
+    SELECT * FROM `t_repayment` WHERE `borrow_id`=#{borrowId}
+  </select>
+</mapper>

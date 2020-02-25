@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TUserAccountMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.TUserAccount">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="account_status" jdbcType="INTEGER" property="accountStatus" />
+    <result column="account_type" jdbcType="INTEGER" property="accountType" />
+    <result column="fill_userinfo" jdbcType="INTEGER" property="fillUserinfo" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    id, username, password, account_status, account_type, fill_userinfo, last_login_time, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_account
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    delete from t_user_account
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.pojo.TUserAccount">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_user_account (id, username, password, 
+      account_status, account_type, fill_userinfo, 
+      last_login_time, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{accountStatus,jdbcType=INTEGER}, #{accountType,jdbcType=INTEGER}, #{fillUserinfo,jdbcType=INTEGER}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.pojo.TUserAccount">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    insert into t_user_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="accountStatus != null">
+        account_status,
+      </if>
+      <if test="accountType != null">
+        account_type,
+      </if>
+      <if test="fillUserinfo != null">
+        fill_userinfo,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        #{accountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="fillUserinfo != null">
+        #{fillUserinfo,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.pojo.TUserAccount">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_user_account
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        account_status = #{accountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="accountType != null">
+        account_type = #{accountType,jdbcType=INTEGER},
+      </if>
+      <if test="fillUserinfo != null">
+        fill_userinfo = #{fillUserinfo,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.pojo.TUserAccount">
+    <!--@mbg.generated generated on Fri Oct 11 11:28:27 CST 2019.-->
+    update t_user_account
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=INTEGER},
+      account_type = #{accountType,jdbcType=INTEGER},
+      fill_userinfo = #{fillUserinfo,jdbcType=INTEGER},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="selectUserAccountUserName" resultMap="BaseResultMap">
+        SELECT * FROM t_user_account where username=#{userName}
+    </select>
+  <select id="seleAll" resultType="com.example.demo.pojo.TUserInfo">
+    SELECT * FROM `t_user_info` WHERE account_id=#{userId}
+  </select>
+
+
+</mapper>
